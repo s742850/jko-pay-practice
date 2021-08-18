@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store_id: MyString
+  gateway_trade_no: MyString
+  merchant_trade_no: MyString
+  post_id: MyString
+  trade_no: MyString
+  trade_time: MyString
+  payment_type: 1
+  trade_amount: 1
+  debit_amount: 1
+  redeem_name: MyString
+  redeem_amount: 1
+  store_redeem_amount: 1
+  available_amount: 1
+  invoice_vehicle: MyString
+  mer_mem_token: MyString
+  remark: MyString
+  extra1: MyString
+  extra2: MyString
+  extra3: MyString
+
+two:
+  store_id: MyString
+  gateway_trade_no: MyString
+  merchant_trade_no: MyString
+  post_id: MyString
+  trade_no: MyString
+  trade_time: MyString
+  payment_type: 1
+  trade_amount: 1
+  debit_amount: 1
+  redeem_name: MyString
+  redeem_amount: 1
+  store_redeem_amount: 1
+  available_amount: 1
+  invoice_vehicle: MyString
+  mer_mem_token: MyString
+  remark: MyString
+  extra1: MyString
+  extra2: MyString
+  extra3: MyString

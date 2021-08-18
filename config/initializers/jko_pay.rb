@@ -1,0 +1,1 @@
+# JkoPay::Request::Pos.define_host = "https://uat-pos.jkopay.app/Test"
