@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_092032) do
+ActiveRecord::Schema.define(version: 2021_08_18_081402) do
+
+  create_table "cancels", force: :cascade do |t|
+    t.string "merchant_id", null: false
+    t.string "store_id", null: false
+    t.string "gateway_trade_no"
+    t.string "merchant_trade_no", null: false
+    t.string "pos_id", null: false
+    t.integer "trade_amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "payments", force: :cascade do |t|
     t.string "merchant_id", null: false
@@ -35,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_092032) do
     t.string "extra3"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["merchant_trade_no"], name: "index_payments_on_merchant_trade_no"
   end
 
   create_table "stores", force: :cascade do |t|

@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration[6.1]
       t.string :merchant_id, comment: '特店代碼,每家商店都不一樣', null: false
       t.string :store_id, comment: '商店編號', null: false
       t.string :gateway_trade_no, comment: '銀行端交易序號'
-      t.string :merchant_trade_no, comment: '商店端交易序號,唯一值', null: false
+      t.string :merchant_trade_no, comment: '商店端交易序號,唯一值', null: false, :index => true
       t.string :pos_id, comment: 'POS機號', null: false
       t.string :trade_no, comment: '街口端交易序號', null: false
       t.string :trade_time, comment: '街口端交易日期時間 格式:yyyy/MM/dd HH:mm:ss', null: false
