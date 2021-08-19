@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   #
   # match 'payment', to: 'payment#post', via: [:post]
 
-  resources :payment, :cancel
+  resources :payment, :cancel, :inquiry
 end
