@@ -10,7 +10,7 @@ RequestParamsValidation.define do
       required :pos_id, type: :string, length: { max: 20 }
       required :pos_trade_time, type: :string, length: { max: 19 }
       required :trade_amount, type: :integer
-      required :un_redeem_amount, type: :integer
+      optional :un_redeem_amount, type: :integer
     end
   end
 end

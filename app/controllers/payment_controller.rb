@@ -23,10 +23,6 @@ class PaymentController < ApplicationController
     @request.pos_trade_time = params[:pos_trade_time]
     @request.amount = params[:trade_amount]
     @request.un_redeem_amount = params[:un_redeem_amount]
-    # @request.remark = params[:remark]
-    # @request.extra1 = params[:extra1]
-    # @request.extra2 = params[:extra2]
-    # @request.extra3 = params[:extra3]
     @response = @request.request
 
     if @response.success?
