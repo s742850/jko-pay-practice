@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem 'request_params_validation'
 gem 'jko_pay', git:"https://github.com/s742850/jko_pay"
 gem 'faraday'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
