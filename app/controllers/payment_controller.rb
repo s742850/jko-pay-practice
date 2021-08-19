@@ -4,6 +4,7 @@ require 'jko_pay/response/pos/pay'
 
 class PaymentController < ApplicationController
 
+  before_action :validate_params!
   skip_before_action :verify_authenticity_token
 
   def create

@@ -21,8 +21,6 @@ class InquiryController < ApplicationController
     @request.pos_id = params[:pos_id]
     @request.pos_trade_time = params[:pos_trade_time]
 
-    # byebug
-    # logger.debug 'test'
     @response = @request.request
 
     if @response.success?
