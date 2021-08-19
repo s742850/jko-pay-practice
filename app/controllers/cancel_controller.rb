@@ -1,4 +1,7 @@
 class CancelController < ApplicationController
+
+  before_action :validate_params!
+
   def create
     payment = Payment.find_by_merchant_trade_no(params[:merchant_trade_number])
     unless payment
@@ -31,9 +34,12 @@ class CancelController < ApplicationController
       cancel.merchant_trade_no = payment.merchant_trade_no
       cancel.pos_id = payment.pos_id
       cancel.trade_amount = payment.trade_amount
-      render :json => { status_code: ::Response::StatusCode::SUCCESS }
-    else
-      render :json => { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
+      if cancel.save
+        render :json => { status_code: ::Response::StatusCode::SUCCESS }
+      else
+        render :json => { status_code: ::Response::StatusCode::ERROR_DB }
+      end
     end
+    render :json => { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
   end
 end
