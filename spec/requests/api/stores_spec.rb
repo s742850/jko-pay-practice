@@ -8,6 +8,7 @@ RSpec.describe '測試', type: :request do
       parameter name: :id, in: :path, type: :string
 
       response "200", "store found" do
+        #noinspection RubyArgCount
         examples 'application/json' => {
           id: 1,
           merchant_id: 'xxxx',
