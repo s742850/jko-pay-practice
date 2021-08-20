@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 2021_08_18_094126) do
 
   create_table "stores", force: :cascade do |t|
     t.string "merchant_id"
-    t.string "store_id"
     t.string "name"
     t.string "pos_id"
     t.datetime "created_at", precision: 6, null: false
