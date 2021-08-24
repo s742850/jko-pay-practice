@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   resources :store
   resources :payment, :cancel, :refund, only: [:create]
-  post 'inquiry', to: 'inquiry#inquiry', via: [:post]
+  post 'inquiry', to: 'inquiry#inquiry'
 end
