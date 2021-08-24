@@ -6,9 +6,7 @@ class InquiryController < ApplicationController
   def create
     # include?
     payment = Payment.find_by_merchant_trade_no(params[:merchant_trade_number])
-    unless payment
-      render :json => { status_code: :Response::StatusCode::ERROR_ROW_NOT_FOUND }
-    end
+    render :json => { status_code: :Response::StatusCode::ERROR_ROW_NOT_FOUND } unless payment
     @request = ::JkoPay::Request::Pos::Inquiry.new
     @config = ::JkoPay::Request::Pos.config
     @config.merchant_id = params[:merchant_id]
@@ -29,7 +27,4 @@ class InquiryController < ApplicationController
       render :json => { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
     end
   end
-
-  private
-
 end

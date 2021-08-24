@@ -30,8 +30,6 @@ class RefundController < ApplicationController
       refund.merchant
       refund.store_id
 
-
-
       if refund.save
         render :json => { status_code: ::Response::StatusCode::SUCCESS }
       else
