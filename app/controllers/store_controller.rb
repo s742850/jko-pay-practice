@@ -39,7 +39,7 @@ class StoreController < ApplicationController
 
   def store_save_and_response(store)
     if store.save
-      render json: { status_code: ::Response::StatusCode::SUCCESS }
+      render json: { status_code: ::Response::StatusCode::SUCCESS, store: store }
     else
       render json: { status_code: ::Response::StatusCode::ERROR_DB }
     end
