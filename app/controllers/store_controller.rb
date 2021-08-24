@@ -15,14 +15,14 @@ class StoreController < ApplicationController
   end
 
   def show
-    store = Store.find_by_id(params[:id])
+    store = Store.find_by id: params[:id]
     render_error_row_not_found and return unless store
 
     render_success(store)
   end
 
   def update
-    store = Store.find_by_id(params[:id])
+    store = Store.find_by id: params[:id]
     render_error_row_not_found and return unless store
 
     assign_params(store)
@@ -30,7 +30,7 @@ class StoreController < ApplicationController
   end
 
   def destroy
-    store = Store.find_by_id(params[:id])
+    store = Store.find_by id: params[:id]
     render_error_row_not_found and return unless store
 
     render json: { status_code: ::Response::StatusCode::SUCCESS } if store.delete

@@ -10,7 +10,7 @@ class RefundController < ApplicationController
     @config.merchant_key = params[:merchant_key]
     @request.configure @config
 
-    payment = Payment.find_by_merchant_trade_no(params[:merchant_trade_number])
+    payment = Payment.find_by merchant_trade_no: params[:merchant_trade_number]
     unless payment.trade_no == params[:trade_no]
       render json: { status_code: ::Response::StatusCode::ERROR_REFUND_TRADE_NO }
     end

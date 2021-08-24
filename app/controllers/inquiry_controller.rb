@@ -5,7 +5,7 @@ class InquiryController < ApplicationController
 
   def inquiry
     # include?
-    payment = Payment.find_by_merchant_trade_no(params[:merchant_trade_number])
+    payment = Payment.find_by merchant_trade_no: params[:merchant_trade_number]
     render json: { status_code: ::Response::StatusCode::ERROR_ROW_NOT_FOUND } and return unless payment
 
     @request = ::JkoPay::Request::Pos::Inquiry.new
