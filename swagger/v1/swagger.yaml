@@ -6,7 +6,7 @@ info:
 paths:
   "/payment":
     post:
-      summary: payment
+      summary: 付款
       tags:
       - Payment
       parameters: []
@@ -127,10 +127,15 @@ paths:
               properties:
                 merchant_id:
                   type: string
+                  example: '9999999'
+                  description: 特店代碼
                 name:
                   type: string
+                  example: 拉亞漢堡
                 pos_id:
                   type: string
+                  example: '1'
+                  description: POS機號
               required:
               - merchant_id
               - name
@@ -143,6 +148,8 @@ paths:
       parameters:
       - name: id
         in: path
+        description: 商店ID流水號
+        example: '1'
         required: true
         schema:
           type: string
@@ -167,6 +174,8 @@ paths:
       parameters:
       - name: id
         in: path
+        description: 商店ID流水號
+        example: '1'
         required: true
         schema:
           type: string
@@ -192,10 +201,15 @@ paths:
               properties:
                 merchant_id:
                   type: string
+                  example: '9999999'
+                  description: 特店代碼
                 name:
                   type: string
+                  example: 拉亞漢堡
                 pos_id:
                   type: string
+                  example: '1'
+                  description: POS機號
     delete:
       summary: Delete a store
       tags:
@@ -203,6 +217,8 @@ paths:
       parameters:
       - name: id
         in: path
+        description: 商店ID流水號
+        example: '1'
         required: true
         schema:
           type: string

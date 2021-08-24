@@ -3,7 +3,7 @@ require 'swagger_helper'
 RSpec.describe 'api/payment', type: :request do
 
   path '/payment' do
-    post 'payment' do
+    post '付款' do
       tags 'Payment'
       consumes 'application/json'
       parameter name: :payment, in: :body, schema: {
