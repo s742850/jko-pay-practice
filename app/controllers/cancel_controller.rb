@@ -4,8 +4,8 @@ class CancelController < ApplicationController
   before_action :validate_params!
 
   def create
-    payment = Payment.find_by_merchant_trade_no(params[:merchant_trade_number])
-    return render json: { status_code: :Response::StatusCode::ERROR_ROW_NOT_FOUND } unless payment
+    payment = Payment.find_by merchant_trade_no: params[:merchant_trade_number]
+    render json: { status_code: Response::StatusCode::ERROR_ROW_NOT_FOUND } and return unless payment
 
     @request = JkoPay::Request::Pos::Cancel.new
     @config = ::JkoPay::Request::Pos.config
