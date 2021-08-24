@@ -49,13 +49,13 @@ class PaymentController < ApplicationController
         payment.extra2 = @response.extra_info2
         payment.extra3 = @response.credit_card_info
         if payment.save
-          render :json => { status_code: ::Response::StatusCode::SUCCESS }
+          render json: { status_code: ::Response::StatusCode::SUCCESS }
         else
-          render :json => { status_code: ::Response::StatusCode::ERROR_DB, message: payment.errors }
+          render json: { status_code: ::Response::StatusCode::ERROR_DB, message: payment.errors }
         end
       end
     else
-      render :json => { status_code:  ::Response::StatusCode::ERROR_JKO_API, "response": @response }
+      render json: { status_code:  ::Response::StatusCode::ERROR_JKO_API, "response": @response }
     end
 
   end
