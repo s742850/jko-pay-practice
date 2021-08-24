@@ -12,21 +12,21 @@ RSpec.describe '測試', type: :request do
           stores: [
             {
               "id": 1,
-              "merchant_id": "123",
-              "store_id": "123",
-              "name": "123",
-              "pos_id": "123",
+              "merchant_id": "9999999",
+              "store_id": "1",
+              "name": "街口測試1",
+              "pos_id": "1",
               "created_at": "2021-08-20T22:47:53.517Z",
               "updated_at": "2021-08-20T22:47:53.517Z"
             },
             {
               "id": 2,
-              "merchant_id": "33344",
-              "store_id": "123",
-              "name": "123",
-              "pos_id": "123",
-              "created_at": "2021-08-20T22:47:53.517Z",
-              "updated_at": "2021-08-20T22:47:53.517Z"
+              "merchant_id": "9999999",
+              "store_id": "2",
+              "name": "街口測試2",
+              "pos_id": "2",
+              "created_at": "2021-08-21T22:47:53.517Z",
+              "updated_at": "2021-08-21T22:47:53.517Z"
             }
           ]
         }
@@ -43,12 +43,49 @@ RSpec.describe '測試', type: :request do
       response "200", "store found" do
         #noinspection RubyArgCount
         examples 'application/json' => {
-          id: 1,
-          merchant_id: 'xxxx',
-          name: 'weiby',
-          pos_id: '22xxx',
+          status_code: 0,
+          "store": {
+            "id": 1,
+            "merchant_id": "9999999",
+            "name": "街口測試1",
+            "pos_id": "1",
+            "created_at": "2021-08-20T22:47:53.517Z",
+            "updated_at": "2021-08-20T22:47:53.517Z"
+          }
         }
         run_test!
+      end
+    end
+
+    path "/store" do
+      post "Create a store" do
+        tags "Stores"
+        consumes 'application/json'
+        parameter name: :store, in: :body, schema: {
+          type: :object,
+          properties: {
+            merchant_id: { type: :string },
+            name: { type: :string },
+            pos_id: { type: :string }
+          },
+          required: ['merchant_id', 'name', 'pos_id']
+        }
+        response "200", "store created" do
+          #noinspection RubyArgCount
+          examples 'application/json' => {
+            status_code: 0,
+            "store": {
+              "id": 1,
+              "merchant_id": "9999999",
+              "name": "街口測試1",
+              "pos_id": "1",
+              "created_at": "2021-08-20T22:47:53.517Z",
+              "updated_at": "2021-08-20T22:47:53.517Z"
+            }
+          }
+          run_test!
+        end
+
       end
     end
 
