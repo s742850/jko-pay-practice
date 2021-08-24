@@ -15,31 +15,34 @@ class StoreController < ApplicationController
   end
 
   def show
-    # catch or find_by
-    store_find = Store.find_by_id(params[:id])
-    if store_find
-      render json: { status_code: ::Response::StatusCode::SUCCESS, stores: store_find }
+    store = Store.find_by_id(params[:id])
+    if store
+      render json: { status_code: ::Response::StatusCode::SUCCESS, stores: store }
     else
-      render json: { status_code: ::Response::StatusCode::ERROR_ROW_NOT_FOUND }
+      render_error_row_not_found
     end
   end
 
   def update
-    store_find = Store.find(params[:id])
-    assign_params(store_find)
-    store_save_and_response(store_find)
+    # put & patch
+    store = Store.find_by_id(params[:id])
+    render_error_row_not_found unless store
+    assign_params(store)
+    store_save_and_response(store)
   end
 
   def destroy
-    store_find = Store.find_by_id(params[:id])
-    if store_find
-      render json: { status_code: ::Response::StatusCode::SUCCESS } if store_find.delete
-    else
-      render json: { status_code: ::Response::StatusCode::ERROR_ROW_NOT_FOUND }
-    end
+    store = Store.find_by_id(params[:id])
+    return render_error_row_not_found unless store
+
+    render json: { status_code: ::Response::StatusCode::SUCCESS } if store.delete
   end
 
   private
+
+  def render_error_row_not_found
+    render json: { status_code: ::Response::StatusCode::ERROR_ROW_NOT_FOUND }
+  end
 
   def store_save_and_response(store)
     if store.save
