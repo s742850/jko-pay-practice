@@ -3,10 +3,10 @@ class InquiryController < ApplicationController
   before_action :validate_params!
   skip_before_action :verify_authenticity_token
 
-  def create
+  def inquiry
     # include?
     payment = Payment.find_by_merchant_trade_no(params[:merchant_trade_number])
-    render :json => { status_code: :Response::StatusCode::ERROR_ROW_NOT_FOUND } unless payment
+    render json: { status_code: :Response::StatusCode::ERROR_ROW_NOT_FOUND } unless payment
     @request = ::JkoPay::Request::Pos::Inquiry.new
     @config = ::JkoPay::Request::Pos.config
     @config.merchant_id = params[:merchant_id]
@@ -22,9 +22,9 @@ class InquiryController < ApplicationController
     @response = @request.request
 
     if @response.success?
-      render :json => { status_code: ::Response::StatusCode::SUCCESS, "response": @response }
+      render json: { status_code: ::Response::StatusCode::SUCCESS, "response": @response }
     else
-      render :json => { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
+      render json: { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
     end
   end
 end

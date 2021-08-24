@@ -12,7 +12,7 @@ class RefundController < ApplicationController
 
     payment = Payment.find_by_merchant_trade_no(params[:merchant_trade_number])
     unless payment.trade_no == params[:trade_no]
-      render :json => { status_code: ::Response::StatusCode::ERROR_REFUND_TRADE_NO }
+      render json: { status_code: ::Response::StatusCode::ERROR_REFUND_TRADE_NO }
     end
 
     @request.store_id = params[:store_id]
@@ -31,12 +31,12 @@ class RefundController < ApplicationController
       refund.store_id
 
       if refund.save
-        render :json => { status_code: ::Response::StatusCode::SUCCESS }
+        render json: { status_code: ::Response::StatusCode::SUCCESS }
       else
-        render :json => { status_code: ::Response::StatusCode::ERROR_DB }
+        render json: { status_code: ::Response::StatusCode::ERROR_DB }
       end
     else
-      render :json => { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
+      render json: { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
     end
   end
 end
