@@ -4,6 +4,39 @@ info:
   title: API V1
   version: v1
 paths:
+  "/cancel":
+    post:
+      summary: 取消,當POS端送出付款交易(Payment)後，與街口連線異常或交易逾時，可發送取消交易(Cancel)，取消該筆付款。
+      tags:
+      - Cancel
+      parameters: []
+      responses:
+        '200':
+          description: payment response
+          content:
+            application/json:
+              example:
+                status_code: 0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_trade_number:
+                  type: string
+                  description: 商店端交易序號(付款流水號)(需與 Payment 相同)
+                  example: '20200090444511'
+                merchant_id:
+                  type: string
+                  description: 特店代碼
+                  example: '9999999'
+                merchant_key:
+                  type: string
+                  example: 2AA6B9B6F9C64247ABB2677B6AF2C896
+              required:
+              - merchant_id
+              - merchant_key
   "/payment":
     post:
       summary: 付款
