@@ -57,6 +57,37 @@ RSpec.describe '測試', type: :request do
       end
     end
 
+    patch "Update a store" do
+      tags "Stores"
+
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :store, in: :body, schema: {
+        type: :object,
+        properties: {
+          merchant_id: { type: :string },
+          name: { type: :string },
+          pos_id: { type: :string }
+        }
+      }
+
+      response "200", "update store" do
+        #noinspection RubyArgCount
+        examples 'application/json' => {
+          status_code: 0,
+          "store": {
+            "id": 1,
+            "merchant_id": "9999999",
+            "name": "街口測試1",
+            "pos_id": "1",
+            "created_at": "2021-08-20T22:47:53.517Z",
+            "updated_at": "2021-08-20T22:47:53.517Z"
+          }
+        }
+        run_test!
+      end
+    end
+
     delete "Delete a store" do
       tags "Stores"
       parameter name: :id, in: :path, type: :string

@@ -91,6 +91,42 @@ paths:
                   pos_id: '1'
                   created_at: '2021-08-20T22:47:53.517Z'
                   updated_at: '2021-08-20T22:47:53.517Z'
+    patch:
+      summary: Update a store
+      tags:
+      - Stores
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: update store
+          content:
+            application/json:
+              example:
+                status_code: 0
+                store:
+                  id: 1
+                  merchant_id: '9999999'
+                  name: 街口測試1
+                  pos_id: '1'
+                  created_at: '2021-08-20T22:47:53.517Z'
+                  updated_at: '2021-08-20T22:47:53.517Z'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_id:
+                  type: string
+                name:
+                  type: string
+                pos_id:
+                  type: string
     delete:
       summary: Delete a store
       tags:
