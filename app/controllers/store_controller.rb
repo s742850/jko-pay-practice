@@ -47,8 +47,7 @@ class StoreController < ApplicationController
 
   def assign_params(store)
     store.merchant_id = params[:merchant_id] if params[:merchant_id]
-    store.store_id = params[:store_id] if params[:store_id]
-    store.nstore_idame = params[:name] if params[:name]
+    store.name = params[:name] if params[:name]
     store.pos_id = params[:pos_id] if params[:pos_id]
   end
 
