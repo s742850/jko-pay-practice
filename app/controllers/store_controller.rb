@@ -4,7 +4,7 @@ class StoreController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    render json: { status_code: ::Response::StatusCode::SUCCESS, stores: Store.all }
+    render_success(Store.all)
   end
 
   def create
@@ -16,17 +16,15 @@ class StoreController < ApplicationController
 
   def show
     store = Store.find_by_id(params[:id])
-    if store
-      render json: { status_code: ::Response::StatusCode::SUCCESS, stores: store }
-    else
-      render_error_row_not_found
-    end
+    return render_error_row_not_found unless store
+
+    render_success(store)
   end
 
   def update
-    # put & patch
     store = Store.find_by_id(params[:id])
-    render_error_row_not_found unless store
+    return render_error_row_not_found unless store
+
     assign_params(store)
     store_save_and_response(store)
   end
@@ -40,13 +38,17 @@ class StoreController < ApplicationController
 
   private
 
+  def render_success(store)
+    render json: { status_code: ::Response::StatusCode::SUCCESS, stores: store }
+  end
+
   def render_error_row_not_found
     render json: { status_code: ::Response::StatusCode::ERROR_ROW_NOT_FOUND }
   end
 
   def store_save_and_response(store)
     if store.save
-      render json: { status_code: ::Response::StatusCode::SUCCESS, store: store }
+      render_success store
     else
       render json: { status_code: ::Response::StatusCode::ERROR_DB }
     end
