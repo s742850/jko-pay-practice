@@ -4,6 +4,56 @@ info:
   title: API V1
   version: v1
 paths:
+  "/payment":
+    post:
+      summary: payment
+      tags:
+      - Payment
+      parameters: []
+      responses:
+        '200':
+          description: payment response
+          content:
+            application/json:
+              example:
+                status_code: 0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_id:
+                  type: string
+                merchant_key:
+                  type: string
+                card_token:
+                  type: string
+                store_id:
+                  type: string
+                  description: '123'
+                store_name:
+                  type: string
+                merchant_trade_number:
+                  type: string
+                pos_id:
+                  type: string
+                pos_trade_time:
+                  type: string
+                trade_amount:
+                  type: integer
+                un_redeem_amount:
+                  type: integer
+              required:
+              - merchant_id
+              - merchant_key
+              - card_token
+              - store_id
+              - store_name
+              - merchant_trade_number
+              - pos_id
+              - pos_trade_time
+              - trade_amount
   "/store":
     get:
       summary: Retrieves all stores
