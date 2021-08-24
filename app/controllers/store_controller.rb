@@ -30,9 +30,13 @@ class StoreController < ApplicationController
     store_save_and_response(store_find)
   end
 
-  def delete
-    store_find = Store.find(params[:id])
-    render json: { status_code: ::Response::StatusCode::SUCCESS } if store_find.delete
+  def destroy
+    store_find = Store.find_by_id(params[:id])
+    if store_find
+      render json: { status_code: ::Response::StatusCode::SUCCESS } if store_find.delete
+    else
+      render json: { status_code: ::Response::StatusCode::ERROR_ROW_NOT_FOUND }
+    end
   end
 
   private
