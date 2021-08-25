@@ -44,7 +44,7 @@ class PaymentController < ApplicationController
         payment.available_amount = @response.available_amount
         payment.invoice_vehicle = @response.carrier
         payment.mer_mem_token = @response.member_token
-        payment.remark  = @response.note
+        payment.remark = @response.note
         payment.extra1 = @response.extra_info1
         payment.extra2 = @response.extra_info2
         payment.extra3 = @response.credit_card_info
@@ -55,7 +55,7 @@ class PaymentController < ApplicationController
         end
       end
     else
-      render json: { status_code:  ::Response::StatusCode::ERROR_JKO_API, "response": @response }
+      render json: { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
     end
 
   end
