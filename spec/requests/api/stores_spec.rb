@@ -108,7 +108,7 @@ RSpec.describe '商店', type: :request do
       parameter name: :store, in: :body, schema: {
         type: :object,
         properties: {
-          merchant_id: { type: :string, example: '9999999', description: :'特店代碼' },
+          merchant_id: { type: :string, example: '9999999', description: :'特店代碼,唯一碼' },
           name: { type: :string, example: '拉亞漢堡' },
           pos_id: { type: :string, example: '1', description: :'POS機號' }
         },

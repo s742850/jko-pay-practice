@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_08_18_094126) do
     t.string "pos_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["merchant_id"], name: "index_stores_on_merchant_id", unique: true
   end
 
 end
