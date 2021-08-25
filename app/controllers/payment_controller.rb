@@ -48,10 +48,15 @@ class PaymentController < ApplicationController
         payment.extra1 = @response.extra_info1
         payment.extra2 = @response.extra_info2
         payment.extra3 = @response.credit_card_info
-        if payment.save
-          render json: { status_code: ::Response::StatusCode::SUCCESS }
-        else
-          render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE, message: payment.errors }
+
+        begin
+          if payment.save
+            render json: { status_code: ::Response::StatusCode::SUCCESS }
+          else
+            render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE, message: payment.errors }
+          end
+        rescue ActiveRecord::RecordNotUnique
+          render json: { status_code: ::Response::StatusCode::ERROR_DUPLICATE_ROW }
         end
       end
     else
