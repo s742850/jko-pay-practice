@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_08_18_094126) do
     t.integer "trade_amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["merchant_trade_no"], name: "index_cancels_on_merchant_trade_no"
   end
 
   create_table "payments", force: :cascade do |t|
