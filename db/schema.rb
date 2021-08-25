@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(version: 2021_08_18_094126) do
     t.string "gateway_trade_no"
     t.string "merchant_trade_no", null: false
     t.string "pos_id", null: false
+    t.integer "trade_amount", null: false
+    t.integer "debit_amount", null: false
+    t.integer "available_amount", null: false
     t.string "trade_no", null: false
     t.string "refund_trade_no", null: false
     t.string "refund_trade_time", null: false
