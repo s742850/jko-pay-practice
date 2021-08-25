@@ -7,7 +7,7 @@ class CancelController < ApplicationController
     payment = Payment.find_by merchant_trade_no: params[:merchant_trade_number]
     render json: { status_code: ::Response::StatusCode::ERROR_ROW_NOT_FOUND } and return unless payment
 
-    @request = JkoPay::Request::Pos::Cancel.new
+    @request = ::JkoPay::Request::Pos::Cancel.new
     @config = ::JkoPay::Request::Pos.config
     @config.merchant_id = params[:merchant_id]
     @config.merchant_key = params[:merchant_key]

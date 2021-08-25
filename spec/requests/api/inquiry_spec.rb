@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'api/inquiry', type: :request do
   path '/inquiry' do
-    post '查詢' do
+    post '付款查詢或退款查詢' do
       tags 'Inquiry'
       consumes 'application/json'
       parameter name: :inquiry, in: :body, schema: {

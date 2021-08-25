@@ -8,7 +8,7 @@ class PaymentController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    @request = JkoPay::Request::Pos::Pay.new
+    @request = ::JkoPay::Request::Pos::Pay.new
 
     @config = ::JkoPay::Request::Pos.config
     @config.merchant_id = params[:merchant_id]
