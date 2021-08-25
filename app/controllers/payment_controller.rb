@@ -51,7 +51,7 @@ class PaymentController < ApplicationController
         if payment.save
           render json: { status_code: ::Response::StatusCode::SUCCESS }
         else
-          render json: { status_code: ::Response::StatusCode::ERROR_DB, message: payment.errors }
+          render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE, message: payment.errors }
         end
       end
     else

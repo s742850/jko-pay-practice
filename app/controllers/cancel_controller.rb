@@ -36,7 +36,7 @@ class CancelController < ApplicationController
       if cancel.save
         render json: { status_code: ::Response::StatusCode::SUCCESS }
       else
-        render json: { status_code: ::Response::StatusCode::ERROR_DB }
+        render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
       end
     end
     render json: { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }

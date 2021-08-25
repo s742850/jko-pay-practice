@@ -24,19 +24,33 @@ class RefundController < ApplicationController
     @request.amount = params[:trade_amount]
     @request.un_redeem_amount = params[:un_redeem_amount]
     @response = @request.request
+    render_success and return if @response.is_trade_repeat?
 
     if @response.success?
       refund = Refund.new
-      refund.merchant
-      refund.store_id
+      refund.merchant_id = @response.merchant_id
+      refund.store_id = @response.store_id
+      refund.gateway_trade_no = @response.gateway_trade_number
+      refund.pos_id = @response.pos_id
+      refund.trade_no = @response.trade_number
+      refund.debit_amount = @response.debit_amount
+      refund.available_amount = @response.available_amount
+      refund.trade_no = @response.trade_number
+      refund.refund_trade_time = @response.refund_trade_time
 
       if refund.save
-        render json: { status_code: ::Response::StatusCode::SUCCESS }
+        render_success
       else
-        render json: { status_code: ::Response::StatusCode::ERROR_DB }
+        render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
       end
     else
       render json: { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
     end
+  end
+
+  private
+
+  def render_success
+    render json: { status_code: ::Response::StatusCode::SUCCESS }
   end
 end

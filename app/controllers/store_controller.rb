@@ -50,7 +50,7 @@ class StoreController < ApplicationController
     if store.save
       render_success store
     else
-      render json: { status_code: ::Response::StatusCode::ERROR_DB }
+      render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
     end
   end
 
