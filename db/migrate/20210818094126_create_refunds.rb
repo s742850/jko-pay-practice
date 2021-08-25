@@ -6,6 +6,9 @@ class CreateRefunds < ActiveRecord::Migration[6.1]
       t.string :gateway_trade_no, comment: '銀行端交易序號', null: true
       t.string :merchant_trade_no, comment: '商店端交易序號,唯一值', null: false, :index => true
       t.string :pos_id, comment: 'POS機號', null: false
+      t.integer :trade_amount, comment: '退款金額', null: false
+      t.integer :debit_amount, comment: '付款方式退款金額', null: false
+      t.integer :available_amount, comment: '儲值帳戶餘額，目前此欄位預設為 0', null: false
       t.string :trade_no, comment: '原街口端交易序號', null: false
       t.string :refund_trade_no, comment: '街口端退款交易序號', null: false
       t.string :refund_trade_time, comment: '街口端退款交易日期時間 格式:yyyy/MM/dd HH:mm:ss', null: false
