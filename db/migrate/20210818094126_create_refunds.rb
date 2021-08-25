@@ -4,7 +4,7 @@ class CreateRefunds < ActiveRecord::Migration[6.1]
       t.string :merchant_id, comment: '特店代碼,每家商店都不一樣', null: false
       t.string :store_id, comment: '商店編號', null: false
       t.string :gateway_trade_no, comment: '銀行端交易序號', null: true
-      t.string :merchant_trade_no, comment: '商店端交易序號,唯一值', null: false, index: true, unique: true
+      t.string :merchant_trade_no, comment: '商店端交易序號,唯一值', null: false
       t.string :pos_id, comment: 'POS機號', null: false
       t.integer :trade_amount, comment: '退款金額', null: false
       t.integer :debit_amount, comment: '付款方式退款金額', null: false
@@ -24,5 +24,6 @@ class CreateRefunds < ActiveRecord::Migration[6.1]
       t.string :extra3, null: true
       t.timestamps
     end
+    add_index :refunds, :merchant_trade_no, unique: true
   end
 end
