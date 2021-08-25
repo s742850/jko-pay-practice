@@ -47,10 +47,14 @@ class StoreController < ApplicationController
   end
 
   def store_save_and_response(store)
-    if store.save
-      render_success store
-    else
-      render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
+    begin
+      if store.save
+        render_success store
+      else
+        render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
+      end
+    rescue ActiveRecord::RecordNotUnique
+      render json: { status_code: ::Response::StatusCode::ERROR_DUPLICATE_ROW }
     end
   end
 

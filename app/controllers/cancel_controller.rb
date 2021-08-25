@@ -33,10 +33,14 @@ class CancelController < ApplicationController
       cancel.merchant_trade_no = payment.merchant_trade_no
       cancel.pos_id = payment.pos_id
       cancel.trade_amount = payment.trade_amount
-      if cancel.save
-        render json: { status_code: ::Response::StatusCode::SUCCESS }
-      else
-        render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
+      begin
+        if cancel.save
+          render json: { status_code: ::Response::StatusCode::SUCCESS }
+        else
+          render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
+        end
+      rescue ActiveRecord::RecordNotUnique
+        render json: { status_code: ::Response::StatusCode::ERROR_DUPLICATE_ROW }
       end
     end
     render json: { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }

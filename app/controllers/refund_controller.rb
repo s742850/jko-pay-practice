@@ -38,10 +38,14 @@ class RefundController < ApplicationController
       refund.trade_no = @response.trade_number
       refund.refund_trade_time = @response.refund_trade_time
 
-      if refund.save
-        render_success
-      else
-        render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
+      begin
+        if refund.save
+          render_success
+        else
+          render json: { status_code: ::Response::StatusCode::ERROR_DB_SAVE }
+        end
+      rescue ActiveRecord::RecordNotUnique
+        render json: { status_code: ::Response::StatusCode::ERROR_DUPLICATE_ROW }
       end
     else
       render json: { status_code: ::Response::StatusCode::ERROR_JKO_API, "response": @response }
